@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href="mask-load.css" rel="stylesheet">
+
+    <style>
+        .header {
+            text-align: center;
+        }
+
+        .footer {
+            margin-bottom: 10px;
+        }
+
+        
+    </style>
+</head>
+
+<body id="body">
+    <header class="header">
+        <h1>loading效果</h1>
+        <hr>
+    </header>
+    <article class="article">
+        <p id="p">效果有：遮罩、进度条</p>
+        <button onclick="javascript:change_color();" id="btn">改变内容颜色</button>
+        <button onclick="javascript:triggle_loading(this);">点击此处，触发loading效果</button> 
+        <a href="#" onclick="javascript:triggle_loading(this);">点击此处，触发loading效果</a>
+        <div id="test" style="height:200px;overflow:auto"> 
+            <div style="height:2000px;background-color:aqua"></div>
+        </div>
+    </article>
+
+
+    <script src="mask-load.js"></script>
+    <script>
+        function change_color() {
+            var p = document.getElementById('p');
+            p.style.color = 'red';
+        }
+        function triggle_loading() {
+            maskLoadPlugin.selectView(arguments[0]).lockView();
+            setTimeout(function () {
+                maskLoadPlugin.unlockView();
+            }, 3000);
+        }
+        
+        //maskLoadPlugin.config({ title: { hasTXT: true, txt: '加载中，请稍等...' } }).lockView();
+        maskLoadPlugin.selectView(document.getElementById('body')).lockView();
+        setTimeout(function () {
+            maskLoadPlugin.unlockView();
+        }, 3000);
+    </script>
+
+</body>
+
+</html>
